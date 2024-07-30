@@ -367,6 +367,7 @@
 "Assets/Scripts/FruitSlicing.cs"
 "Assets/Scripts/GetAspectRatio.cs"
 "Assets/Scripts/GyroServer.cs"
+"Assets/Scripts/HeartRate.cs"
 "Assets/Scripts/JunkCode.cs"
 "Assets/Scripts/Line_code.cs"
 "Assets/Scripts/MathServer.cs"

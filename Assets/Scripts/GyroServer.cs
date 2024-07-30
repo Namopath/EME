@@ -17,7 +17,6 @@ public class GyroServer : MonoBehaviour
     public GameObject scoreObj;
     private int intScore = 0;
     private TMP_Text tmpText;
-
     TcpClient client;
     Queue scoreQueue = new Queue();
     private object queueLock = new object();
@@ -33,7 +32,7 @@ public class GyroServer : MonoBehaviour
             try
             {
                 tmpText = scoreObj.GetComponentInChildren<TMP_Text>();
-                tmpText.text = "Loading...";
+                tmpText.text = "Score: 0";
                 print(tmpText.text);
             }
             catch (Exception e)
