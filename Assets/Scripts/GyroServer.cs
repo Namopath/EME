@@ -21,6 +21,7 @@ public class GyroServer : MonoBehaviour
     Queue scoreQueue = new Queue();
     private object queueLock = new object();
     private String prevData;
+    public GameObject hrWarn;
    
 
     void Start()
@@ -132,9 +133,11 @@ public class GyroServer : MonoBehaviour
             while (scoreQueue.Count > 0){
                 String incomingData = scoreQueue.Dequeue().ToString();
 
-                if(incomingData == "1"){
+                if(incomingData == "1" && intScore < 20){
                     intScore += 1;
                     tmpText.text = "Score:" + intScore.ToString();
+                } else{
+                    hrWarn.SetActive(true);
                 }
             }
         }

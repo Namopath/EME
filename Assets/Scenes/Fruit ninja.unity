@@ -7843,6 +7843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionPort: 25002
   scoreObj: {fileID: 716394310}
+  hrWarn: {fileID: 0}
 --- !u!114 &1954812547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7870,6 +7871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreObj: {fileID: 716394310}
   intScore: 0
+  hrWarn: {fileID: 355210809}
 --- !u!114 &1954812549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7883,7 +7885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionPort: 25004
-  heartWarn: {fileID: 0}
+  heartWarn: {fileID: 355210809}
 --- !u!1 &1961753737
 GameObject:
   m_ObjectHideFlags: 0

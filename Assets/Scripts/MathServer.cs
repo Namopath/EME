@@ -45,7 +45,10 @@ public class MathServer : MonoBehaviour
     int numAns2;
     int numAns3;
     private bool changingQuestion = false;
-    int qtype;
+    public int qtype = 1;
+
+    public GameObject hrWarn;
+
     // void Awake(){
     //     Debug.unityLogger.logEnabled = false;
     // }
@@ -56,7 +59,9 @@ public class MathServer : MonoBehaviour
         if(question != null){
              try{
                         questionTxt = question.GetComponent<TMP_Text>();
-                        questionTxt.text = ChangeQuestion();
+                        if(qtype == 1){
+                            questionTxt.text = ChangeMathQuestion();
+                        }
                 } catch(Exception e){
                         print("Error fetching text for question: " + e);
                 }
@@ -66,7 +71,7 @@ public class MathServer : MonoBehaviour
                         ans1Text = ans1.GetComponent<TMP_Text>();
                         ans2Text = ans2.GetComponent<TMP_Text>();
                         ans3Text = ans3.GetComponent<TMP_Text>();
-                        ChangeAns(operation);
+                        ChangeMathAns(operation);
                 } catch(Exception e){
                         print("Error fetching text for question: " + e);
                 }        
@@ -82,7 +87,11 @@ public class MathServer : MonoBehaviour
                 if (IncomingData == "C1"){
                     if(prevMsg == "N" && correctAns == 1){
                         ans1Text.text = "Correct";
-                        intScore += 1;
+                        if(intScore < 20){
+                         intScore += 1;   
+                        }else{
+                            hrWarn.SetActive(true);
+                        }
                         scoreText.text = "Score: " + intScore;
                         StartCoroutine(ChangeQuestionAfterDelay());
                     }
@@ -94,7 +103,11 @@ public class MathServer : MonoBehaviour
                 if (IncomingData == "C2"){
                     if(prevMsg == "N" && correctAns == 2){
                         ans2Text.text = "Correct";
-                        intScore += 1;
+                        if(intScore < 20){
+                         intScore += 1;   
+                        }else{
+                            hrWarn.SetActive(true);
+                        }
                         scoreText.text = "Score: " + intScore;
                         StartCoroutine(ChangeQuestionAfterDelay());
                     }
@@ -106,7 +119,11 @@ public class MathServer : MonoBehaviour
                 if (IncomingData == "C3"){
                     if(prevMsg == "N" && correctAns == 3){
                         ans3Text.text = "Correct";
-                        intScore += 1;
+                        if(intScore < 20){
+                         intScore += 1;   
+                        }else{
+                            hrWarn.SetActive(true);
+                        }
                         scoreText.text = "Score: " + intScore;
                         StartCoroutine(ChangeQuestionAfterDelay());
                     }
@@ -125,10 +142,11 @@ public class MathServer : MonoBehaviour
         changingQuestion = true;
         yield return new WaitForSeconds(2f);
 
-        questionTxt.text = ChangeQuestion();
+        if(qtype == 1){
+           questionTxt.text = ChangeMathQuestion();
         correctAns = rnd.Next(1,4);
-        ChangeAns(operation);
-
+        ChangeMathAns(operation); 
+        }
         changingQuestion = false;
     }
 
@@ -213,7 +231,7 @@ public class MathServer : MonoBehaviour
         }
     }
     
-    String ChangeQuestion(){
+    String ChangeMathQuestion(){
         num1 = rnd.Next(0, 100);
         num2 = rnd.Next(0, 100);
         int index = rnd.Next(0,3);
@@ -221,7 +239,7 @@ public class MathServer : MonoBehaviour
         String q = num1.ToString() + operation + num2.ToString();
         return q;
     }
-    void ChangeAns(String operation){
+    void ChangeMathAns(String operation){
         switch (operation)
         {
             case "+":

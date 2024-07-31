@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     private TMP_Text scoreText;
     public int intScore = 0;
 
+    public GameObject hrWarn;
+
     private void Awake()
     {
         if (Instance == null)
@@ -32,8 +34,12 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void AddScore(){
-        intScore += 1;
-        UpdateScore();
+        if(intScore < 20){
+           intScore += 1;
+        UpdateScore(); 
+        } else{
+            hrWarn.SetActive(true);
+        }
     }
 
     private void UpdateScore(){
