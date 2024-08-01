@@ -20,7 +20,7 @@ MonoBehaviour:
   - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-ops__UnityEngine.UIElements.ListView
   - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-ops__unity-vertical-collection-scroll-view__Slider__UnityEngine.UIElements.Scroller+ScrollerSlider
   m_Values:
-  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":239.99954223632813},"firstVisibleIndex":11,"contentPadding":237.5997314453125,"contentHeight":712.7998046875,"anchoredItemIndex":11,"anchorOffset":2.399810791015625}}'
+  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":239.99978637695313},"firstVisibleIndex":11,"contentPadding":237.5997314453125,"contentHeight":712.7998046875,"anchoredItemIndex":11,"anchorOffset":2.400054931640625}}'
   - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":0.0}'
   - '{}'
   - '{}'

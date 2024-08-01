@@ -5623,7 +5623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionPort: 25002
   scoreObj: {fileID: 1829607432}
-  hrWarn: {fileID: 0}
+  hrWarn: {fileID: 351897611}
 --- !u!114 &1571985512
 MonoBehaviour:
   m_ObjectHideFlags: 0
