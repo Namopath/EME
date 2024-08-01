@@ -46,8 +46,50 @@ public class MathServer : MonoBehaviour
     int numAns3;
     private bool changingQuestion = false;
     public int qtype = 1;
+    int txtIndex;
 
     public GameObject hrWarn;
+
+    Dictionary<int, string> qDict = new Dictionary<int, string>() {
+        {1, "What is the tallest mountain in the world"},
+        {2, "Why is seawater salty"},
+        {3, "Why do we see rainbows"},
+        {4, "Why do leaves change colors during the fall"},
+        {5, "How can exercise benefit you?"},
+        {6, "How can lack of sleep affect health"},
+        {7, "Why is hydration important"},
+        {8, "Why is the sky blue"},
+    };
+    Dictionary<int, string> ansDict = new Dictionary<int, string>() {
+        {1, "Mount everest"},
+        {2, "Dissolved rocks and minerals in the water"},
+        {3, "Refraction of light on raindrops"},
+        {4, "Lack of Chlorophyll"},
+        {5, "Improves physical health and physique"},
+        {6, "Causes damage to the immune and neural system"},
+        {7, "Helps balance chemical processes"},
+        {8, "Scattering of blue light"},
+    };
+    Dictionary<int, string> wrongDict1 = new Dictionary<int, string>() {
+        {1, "Mont Blanc"},
+        {2, "Fish waste products"},
+        {3, "Good luck"},
+        {4, "Ice and frost"},
+        {5, "Damages muscle"},
+        {6, "Make you more energetic"},
+        {7, "To cure diseases"},
+        {8, "Water vapor"},
+    };
+    Dictionary<int, string> wrongDict2 = new Dictionary<int, string>() {
+        {1, "Himalayans"},
+        {2, "Volcanic activity"},
+        {3, "Sunlight"},
+        {4, "Lack of water"},
+        {5, "Causes respiratory problems"},
+        {6, "Causes damage to the nutrition"},
+        {7, "Helps make you pee"},
+        {8, "The ocean"},
+    };
 
     // void Awake(){
     //     Debug.unityLogger.logEnabled = false;
@@ -62,6 +104,9 @@ public class MathServer : MonoBehaviour
                         if(qtype == 1){
                             questionTxt.text = ChangeMathQuestion();
                         }
+                        else if(qtype ==2){
+                            questionTxt.text = ChangeTxtQuestion();
+                        }
                 } catch(Exception e){
                         print("Error fetching text for question: " + e);
                 }
@@ -71,7 +116,13 @@ public class MathServer : MonoBehaviour
                         ans1Text = ans1.GetComponent<TMP_Text>();
                         ans2Text = ans2.GetComponent<TMP_Text>();
                         ans3Text = ans3.GetComponent<TMP_Text>();
-                        ChangeMathAns(operation);
+                        if(qtype == 1){
+                            ChangeMathAns(operation);
+                        }
+                        else if(qtype == 2){
+                            ChangeTxtQuestion();
+                        }
+                        
                 } catch(Exception e){
                         print("Error fetching text for question: " + e);
                 }        
@@ -143,9 +194,14 @@ public class MathServer : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         if(qtype == 1){
-           questionTxt.text = ChangeMathQuestion();
-        correctAns = rnd.Next(1,4);
-        ChangeMathAns(operation); 
+            questionTxt.text = ChangeMathQuestion();
+            correctAns = rnd.Next(1,4);
+            ChangeMathAns(operation); 
+        }
+        else if(qtype == 2){
+            questionTxt.text = ChangeTxtQuestion();
+            correctAns = rnd.Next(1,4);
+            ChangeTxtAns();
         }
         changingQuestion = false;
     }
@@ -279,4 +335,36 @@ public class MathServer : MonoBehaviour
         }
     }
 
+    public void ChangeqType(){
+        if(qtype == 1){
+            qtype = 2;
+        }
+        else if(qtype == 2){
+            qtype = 1;
+        }
+    }
+
+    String ChangeTxtQuestion(){
+        txtIndex = rnd.Next(1,8);
+        String q = qDict[txtIndex];
+        return q;
+    }
+    
+    void ChangeTxtAns(){
+        if(correctAns == 1){
+            ans1Text.text = ansDict[txtIndex];
+            ans2Text.text = wrongDict1[txtIndex];
+            ans3Text.text = wrongDict2[txtIndex];
+        }
+        if(correctAns == 2){
+            ans2Text.text = ansDict[txtIndex];
+            ans1Text.text = wrongDict1[txtIndex];
+            ans3Text.text = wrongDict2[txtIndex];
+        }
+        if(correctAns == 3){
+            ans3Text.text = ansDict[txtIndex];
+            ans1Text.text = wrongDict1[txtIndex];
+            ans2Text.text = wrongDict2[txtIndex];
+        }
+    }
 }
